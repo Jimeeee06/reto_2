@@ -1,7 +1,3 @@
----
-config:
-  theme: neo-dark
----
 
 ```mermaid
 classDiagram
