@@ -1,7 +1,7 @@
 
 ```mermaid
 classDiagram
-  direction LR
+  direction TB
 
   class Libro {
     -String titulo
@@ -36,10 +36,9 @@ classDiagram
     +calcular_multa()
   }
 
-  Bibliotecario --> Prestamo : gestionar()
-  Bibliotecario --> Libro : registrar()
-  Bibliotecario --|> Usuario : registrar()
-  Usuario "1" -- "n" Prestamo : solicitar()
-  Prestamo "1" -- "1" Libro
-  Prestamo "1" -- "1" Usuario
+  Bibliotecario -- Prestamo : gestionar()
+  Bibliotecario -- Libro : registrar()
+  Usuario --* Libro
+  Usuario --* Prestamo
+  
 ```
