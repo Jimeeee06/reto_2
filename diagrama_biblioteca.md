@@ -15,7 +15,7 @@ classDiagram
     class Usuario {
         -String nombre
         -int id
-        -Prestamo[*] prestamos
+        -Prestamo prestamos
         +Prestamo pedirLibro(Libro, int)
         +devolverLibro(Prestamo)
     }
@@ -23,7 +23,7 @@ classDiagram
     class Prestamo {
         -Date fechaInicio
         -Date fechaFinPrevista
-        -Date? fechaFinReal
+        -Date fechaFinReal
         +cerrar()
     }
 
