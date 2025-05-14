@@ -1,44 +1,45 @@
 
 ```mermaid
 classDiagram
-  direction TB
+    direction TB
 
-  class Libro {
-    -String titulo
-    -String autor
-    -String codigo
-    -bool disponible
-    +prestar()
-    +devolver()
-  }
+    class Libro {
+        -String titulo
+        -String autor
+        -String codigo
+        -bool disponible
+        +bool prestar()
+        +devolver()
+    }
 
-  class Usuario {
-    -String nombre
-    -int ID
-    -String correo
-    -list prestamos
-    +devolver_libro()
-  }
+    class Usuario {
+        -String nombre
+        -int id
+        -Prestamo[*] prestamos
+        +Prestamo pedirLibro(Libro, int)
+        +devolverLibro(Prestamo)
+    }
 
-  class Bibliotecario {
-    +registrar_libro()
-    +registrar_usuario()
-    +gestionar_prestamos()
-  }
+    class Prestamo {
+        -Date fechaInicio
+        -Date fechaFinPrevista
+        -Date? fechaFinReal
+        +cerrar()
+    }
 
-  class Prestamo {
-    -date fecha_prestamo
-    -date fecha_devolucion_prevista
-    -date fecha_devolucion_real
-    -String estado_prestamo
-    -int multa
-    +registrar_devolucion()
-    +calcular_multa()
-  }
 
-  Bibliotecario -- Prestamo : gestionar()
-  Bibliotecario -- Libro : registrar()
-  Usuario --* Libro
-  Usuario --* Prestamo
-  
+    class Biblioteca {
+        -String nombre
+        -Libro[*] catalogo
+        -Usuario[*] socios
+        -Prestamo[*] historico
+        +agregarLibro(Libro)
+        +registrarUsuario(Usuario)
+        +Prestamo prestar(Usuario, Libro, int)
+    }
+
+    Usuario      --*  Prestamo   : realiza
+    Prestamo     -->     Libro
+    Biblioteca   --*  Libro      : contiene
+
 ```
